@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Smart Crop Health Assistant</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef7ee;
+      padding: 30px;
+    }
+
+    .box {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #ccc;
+    }
+
+    h1 {
+      color: green;
+      text-align: center;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    select, textarea, button {
+      width: 100%;
+      margin-top: 8px;
+      margin-bottom: 16px;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      background: green;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background: darkgreen;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h1>Smart Crop Health Assistant</h1>
+
+    <label>Select Crop</label>
+    <select id="crop">
+      <option>Rice</option>
+      <option>Wheat</option>
+      <option>Tomato</option>
+      <option>Cotton</option>
+      <option>Maize</option>
+      <option>Potato</option>
+    </select>
+
+    <label>Enter Crop Symptoms</label>
+    <textarea id="symptoms" rows="5" placeholder="Example: yellow leaves, brown spots, wilting..."></textarea>
+
+    <button onclick="checkHealth()">Check Crop Health</button>
+  </div>
+
+  <script>
+    function checkHealth() {
+      const crop = document.getElementById("crop").value;
+      const symptoms = document.getElementById("symptoms").value.toLowerCase();
+
+      let result = "";
+
+      if (symptoms.trim() === "") {
+        alert("Please enter crop symptoms");
+        return;
+      }
+
+      if (symptoms.includes("yellow") || symptoms.includes("pale")) {
+        result = "Possible issue: Nitrogen deficiency. Advice: Apply nitrogen-rich fertilizer and maintain proper watering.";
+      } else if (symptoms.includes("spots") || symptoms.includes("brown")) {
+        result = "Possible issue: Fungal infection or leaf spot disease. Advice: Remove infected leaves and use suitable fungicide.";
+      } else if (symptoms.includes("wilting") || symptoms.includes("dry")) {
+        result = "Possible issue: Water stress or root disease. Advice: Check soil moisture and improve irrigation.";
+      } else if (symptoms.includes("holes") || symptoms.includes("insects")) {
+        result = "Possible issue: Pest attack. Advice: Inspect leaves and use organic or recommended pesticide.";
+      } else {
+        result = "No exact match found. Advice: Monitor crop regularly and consult an agriculture expert.";
+      }
+
+      localStorage.setItem("crop", crop);
+      localStorage.setItem("symptoms", symptoms);
+      localStorage.setItem("result", result);
+
+      window.location.href = "result.html";
+    }
+  </script>
+
+</body>
+</html>
