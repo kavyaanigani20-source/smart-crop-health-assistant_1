@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Crop Health Result</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f8f1;
+      padding: 30px;
+    }
+
+    .result-box {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #ccc;
+      border-left: 6px solid green;
+    }
+
+    h1 {
+      color: green;
+      text-align: center;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    button {
+      padding: 12px 20px;
+      background: green;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: darkgreen;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="result-box">
+    <h1>Crop Health Report</h1>
+
+    <p><strong>Crop:</strong> <span id="crop"></span></p>
+    <p><strong>Symptoms:</strong> <span id="symptoms"></span></p>
+    <p><strong>Result:</strong> <span id="result"></span></p>
+
+    <button onclick="goBack()">Check Another Crop</button>
+  </div>
+
+  <script>
+    document.getElementById("crop").innerText = localStorage.getItem("crop");
+    document.getElementById("symptoms").innerText = localStorage.getItem("symptoms");
+    document.getElementById("result").innerText = localStorage.getItem("result");
+
+    function goBack() {
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+</html>
